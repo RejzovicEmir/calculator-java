@@ -12,12 +12,12 @@ Cyclomatic and cognitive complexity:
 ![complexity 6](https://github.com/RejzovicEmir/calculator-java/assets/70068774/b4acdfd5-c5a9-4970-8952-007d77aeca58)
 ---------------------------------------------------------------------------------------------------------------------
 Code Smell:
-Calculator-line#04-Class 'Calculator' is never used;
-Calculator-line#24-Method 'Run(java.lang.String)' is never used;
-Calculator-line#53-'for' loop can be replaced with enhanced 'for';
-Calculator-line#70-Local variable 'textResult' is redundant;
-Calculator-line#77-Can be replaced with 'getFirst()' call;
-Calculator-line#183-'return' is unnecessary as the last statement in a 'void' method;
+Calculator.java-line#04-Class 'Calculator' is never used;
+Calculator.java-line#24-Method 'Run(java.lang.String)' is never used;
+Calculator.java-line#53-'for' loop can be replaced with enhanced 'for';
+Calculator.java-line#70-Local variable 'textResult' is redundant;
+Calculator.java-line#77-Can be replaced with 'getFirst()' call;
+Calculator.java-line#183-'return' is unnecessary as the last statement in a 'void' method;
 
 No code smell in Start class.
 ---------------------------------------------------------------------------------------------------------------------
