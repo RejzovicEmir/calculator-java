@@ -1,0 +1,98 @@
+-Black box testiranje podrazumijeva testiranje za koje nije potrebno poznavanje unutrasnje strukture softvera, osoba koja testira softver cak i ne mora biti programer.
+-Black box testiranje obavlja se poređenjem dobijenih i očekivanih rezultata.
+
+-Testiranje korisničkog interfejsa u ovom slucaju nije bilo moguce uraditi detaljnije jer UI nije implementiran, i program se koristi iskljucivo sa konzolom.
+ Nakon pokretanja programa, konzola ispisuje sledece:
+ "Enter expression here (type 'exit' to quit)"
+ Korisnicki interface:
+         *Ukoliko u konzolu unesemo neki aritmeticki izraz, program se izvrsava, rezultat se ispisuje u obliku decimalnog broja sa jednim decimalnim mjestom iza zareza;
+         *Nakon ispisa rezultata, nemamo ponovo ispisivanje ekspresije kao sa pocetka, korisniku nije jasno naznaceno da li je program zavrsen i treba biti ponovo pokrenut ili 
+          ceka novu naredbu;
+
+-Testiranje funkcionalnosti: Provjera da li softver ispravno obavlja sve funkcije koje su navedene u specifikacijama ili zahtjevima korisnika.
+ Test cases:
+ Testiranje unosa razlicitih ulaznih parametara u konzolu:
+         *Ukoliko u konzolu unesemo samo jedan pozitivni ili negativni broj, isti taj broj ce se ispisati u decimalnom obliku, sa jednim decimalnim mjestom iza zareza i 
+          u tom slucaju nemamo popratnu poruku koja nam daje do znanja da trebamo napisati aritmeticku operaciju da bi program ispravno radio;
+         *Ukoliko u konzolu unesemo 0, program ce kao rezultat ispisati sledece: "0.0" i to opet bez ikakve poruke kojom se korisniku daju instrukcije;
+         *Ukoliko u konzolu unesemo slovo, kao rezultat se ispisuje: "ERROR", bez odgovarajuce poruke ili instrukcije date korisniku;
+         *Ukoliko u konzolu unesemo specijalni karakter (npr. !,@,#,$...), ponovo dobijamo ispis: "ERROR", bez popratne poruke korisniku;
+         *Ukoliko u konzolu unesemo samo neki od operatora(+,-,*,/ ili ^), kao rezultat ponovo dobijamo: "0.0", bez popratne poruke;
+         *Ukoliko u konzolu unesemo samo zagrade((), {}, ili []), dobiti cemo ispis: "ERROR" bez popratne poruke;
+         *Ukoliko u konzolu ne unesemo nista, program se rusi i dobijamo sledeci ispis:
+          "Exception in thread "main" java.lang.StringIndexOutOfBoundsException: Index 0 out of bounds for length 0";
+
+ Sabiranje:
+         *Sabiranja dva ili vise pozitivnih cijelih brojeva:
+          10 + 5 = 15.0;
+          250 + 50 + 200 = 500.0;
+          3025 + 1100 + 4750 + 9030 + 1000025 = 117930.0;
+          3 000 000 000 000 + 4 000 000 000 000 + 15 000 000 000 000 = 22 000 000 000 000.0 - program ispisuje 2.2000001E13 (2.2 * 10^13);
+       
+          *Sabiranje dva ili vise pozitivnih cijelih ili decimalnih brojeva:
+          10.3 + 5.25 = 15.55;
+          250.71 + 50.313 + 200.4714 = 501.4944;
+          3025.6 + 1100.23 + 4750.333 + 9030.4819 + 1000025.66551 = 1 017 932.31041;
+          3 000 000 000 000 + 4 000 000 000 000.2 + 15 000 000 000 000.31 = 22 000 000 000 000.51 - program ispisuje 2.2000001E13 (2.2 * 10^13);
+          
+          *Sabiranje dva ili vise pozitivnih ili negativnih brojeva, cijelih ili decimalnih:
+          -10.3 + 5.25 = -5.05;
+          250.71 + (-50.313) + (-200.4714) = -0.0744; - program ispisuje: "ERROR", zeljena operacija bi se morala napisati u obliku: 
+           "250.71 - 50.313 - 200.4714",da bismo dobili tacan rezultat;
+          -3025.6 + 1100.23 + (-4750.333) + 9030.4819 = 2354.7789 - program ispisuje: "ERROR", zeljena operacija bi se morala napisati u obliku:
+           "-3025.6 + 1100.23 - 4750.333 + 9030.4819", da bismo dobili tacan rezultat;
+          3 000 000 000 000 + 4 000 000 000 000.2 + (-15 000 000 000 000.31) = -8 000 000 000 000.11 - program ispisuje "ERROR", zeljena operacija bi se morala napisati u obliku:
+           "3 000 000 000 000 + 4 000 000 000 000.2 -15 000 000 000 000.31", da bismo dobili tacan rezultat;
+
+ Oduzimanje:
+          *Oduzimanje dva ili vise pozitivnih cijelih brojeva:
+          10 - 5 = 5.0 - program ispisuje rezultat sa samo jednim decimalnim mjestom iza zareza;
+          250 - 50 - 200 = 0.0 - program ispisuje rezultat sa samo jednim decimalnim mjestom iza zareza;
+          3025 - 1100 - 4750 - 9030 - 1000025 = -1 011 880.0 - program ispisuje rezultat sa samo jednim decimalnim mjestom iza zareza;
+          3 000 000 000 000 - 4 000 000 000 000 - 15 000 000 000 000 = -16 000 000 000 000 - program ispisuje -2.2000001E13;
+       
+          *Oduzimanje dva ili vise pozitivnih ili negativnih, cijelih ili decimalnih brojeva:
+          10.3 - 5.25 = 5.05;
+          -250.71 - 50.313 - (-200.4714) = -100.5516 - program ispisuje: "ERROR", zeljena operacija bi se morala napisati u obliku:
+           "-250.71 - 50.313 + 200.4714", da bismo dobili tacan rezultat;
+          -3025.6 - 1100.23 - (-4750.333) - 9030.4819 = -8405.9789 - program ispisuje: "ERROR", zeljena operacija bi se morala napisati u obliku:
+           "-3025.6 - 1100.23 + 4750.333 - 9030.4819", da bismo dobili tacan rezultat;
+          -3 000 000 000 000 - 4 000 000 000 000 - (-15 000 000 000 000) = 8 000 000 000 000 - program ispisuje: "ERROR", zeljena operacija bi se morala napisati u obliku:
+           "-3 000 000 000 000 - 4 000 000 000 000 + 15 000 000 000 000", da bismo dobili tacan rezultat;
+
+Mnozenje:
+          Mnozenje dva ili vise pozitivnih cijelih brojeva:   
+          10 * 5 = 50.0 - program ispisuje rezultat sa samo jednim decimalnim mjestom iza zareza;
+          250 * 50 * 200 = 25000000.0 - program ispisuje rezultat sa samo jednim decimalnim mjestom iza zareza;
+          3025 * 1100 * 4750 * 9030 * 1000025 =  1.4272 * 10^20 - program ispisuje: "1.4272837E20";
+          3 0000 000 000 000 * 4 000 000 000 000 * 15 000 000 000 000 = 1.8 * 10^38 - program ispisuje: "ERROR" - vrijednost rezultata je prevelika;
+
+          Mnozenje dva ili vise pozitivnih ili negativnih cijelih ili decimalnih brojeva:
+          -10 * 5 = -50.0 - program ispisuje rezultat sa samo jednim decimalnim mjestom iza zareza;
+          250 * (-50) * 200 =  - 250 000 000 - program ispisuje: "ERROR";
+          3025.6 * 1100.23 * 4750.333 * 9030.4819 = 142 800 581 380 946.2 - program ispisuje: "1.4280058E14";
+          3 000 000 000 000 * (-4 000 000 000 000) * 15 000 000 000 000 = - 1.8 * 10^38 - program ispisuje: "ERROR" - vrijednost rezultata je prevelika i operacija nije mogla biti izvrsena koristenjem "*" i "-" operatora jedno za drugim;
+
+Dijeljenje:
+          Dijeljenje dva ili vise pozitivnih cijelih brojeva:
+          10 / 5 = 2.0 - program ispisuje rezultat sa samo jednim decimalnim mjestom iza zareza;
+          250 / 50 / 200 = 0.025;
+          3025  / 1100 / 4750 / 9030 / 1000025 = 6.4112 * 10^-14 - program ispisuje: "6.411217E-14";
+          3 000 000 000 000 / 4 000 000 000 000 / 15 000 000 000 000 = 0.0000000000005 - program ispisuje: "ERROR" - vrijednost rezultata je prevelika;
+ 
+          Dijeljenje dva ili vise pozitivnih ili negativnih cijelih ili decimalnih brojeva:
+          10.3 / 5.25 = 1.9619048;
+          250.71 / 50.313 / 200.4714 = 0.024856444;
+          -3025.6 / 1100.23 / (-4750.333) / 9030.4819 = 6.4105 - program ispisujue: "ERROR", operacija nije mogla biti izvrsena koristenjem "/" i "-" operatora jedno za drugim;
+          3 000 000 000 000 / (-4 000 000 000 000) / 15 000 000 000 000 = - 0.00000000005 - program ispisuje: "ERROR", operacija nije mogla biti izvrsena koristenjem "/" i "-" operatora jedno za drugim;
+             
+-Testiranje sigurnosti: 
+ Testiranje sigurnosti u ovom slucaju nije bilo moguce jer program ne obradjuje nikakve senzitivne licne podatke, koje bi malicioznim  osobama bile od znacaja, te nema bazu podataka (DB) niti server, tj. ne koristi kao web aplikacija.
+
+-Testiranje kompatibilnosti: 
+ Program je moguce koristiti preko konzole i to na racunaru sa Windows, macOS, ili Linux sistemu, ili preko moblinog uredjaja, pomocu code editor aplikacije za java programski jezik.
+
+ 
+
+
+
